@@ -1,0 +1,83 @@
+<html>
+    <head>
+            <title>Binary Search</title>
+    </head>
+    <body>
+        <input type="text" id="element">
+        <button onclick="add()">add</button>
+        <button onclick="sorting()">sort</button>
+        <button onclick="bs()">search</button>
+        <p id="show"></p><br>
+        <p id="confirm"></p>
+    </body>
+    <script>
+        var arr=[];
+        var sdata;
+        function add(){
+            var data=document.getElementById('element').value;
+            arr.push(data);
+            display();
+            return arr;
+        }
+       
+        function binarySearch(sdata,lower,high){        
+           
+             mid=parseInt((lower+high)/2);
+            if(arr.includes(sdata))
+            {
+              if(sdata==arr[mid])
+            {
+               document.getElementById('confirm').innerHTML="data exist "+arr[mid]; 
+               return;
+            }
+               else if (sdata>arr[mid])
+            {
+                lower=mid;
+                binarySearch(sdata,lower,high);
+            }
+            else if(sdata<arr[mid])
+            {
+                high=mid;
+                binarySearch(sdata,lower,high);
+            }
+            return;
+            }
+            else
+            {
+               document.getElementById('confirm').innerHTML="data not exist "; 
+            }
+             
+            return;
+            
+        }
+        function bs(){
+            var lower=0;
+            var high=arr.length;
+            var mid;
+            sdata=document.getElementById('element').value;
+            arr.sort();
+            binarySearch(sdata,lower,high);
+        }
+        function sorting(){
+            arr.sort();
+            var i=0;
+            var text="";
+            while(i<arr.length)
+            {
+                text+=arr[i]+" ";
+                i++;
+            }
+            document.getElementById('show').innerHTML=text;
+        }
+        function display(){
+            var i=0;
+            var text="";
+            while(i<arr.length)
+            {
+                text+=arr[i]+" ";
+                i++;
+            }
+            document.getElementById('show').innerHTML=text;
+        }
+    </script>
+</html>
