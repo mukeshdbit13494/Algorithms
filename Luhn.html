@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Luhn Algorithm Example</title>
+    </head>
+    <body>
+        <input type="text" id="number">
+        <button onclick="check()">Check</button>
+        <p id="show"></p>
+    </body>
+    <script>
+        function check(){
+            var data=document.getElementById('number').value;
+            var numChar=data.split("");
+            var dataArr1=[];
+            var dataArr2=[];
+            var digit1;
+            var digit2;
+            var sum=0;
+            var j=0;
+            for(i=0;i<numChar.length;i++)
+            {
+                dataArr1[i]=data%10;
+                data=parseInt(data/10);
+                
+            }
+            for(i=1,j=0;i<numChar.length;i+=2)
+            {
+                dataArr2[j]=dataArr1[i]*2;
+                if(dataArr2[j]>9)
+                {
+                   
+                    digit1=parseInt(dataArr2[j]%10);
+                    digit2=parseInt(dataArr2[j]/10);
+                    dataArr2[j]=digit1+digit2;
+                } 
+                dataArr1[i]=dataArr2[j];
+                
+                j++;
+            }
+            for(i=0;i<dataArr1.length;i++)
+            {
+                sum=sum+parseInt(dataArr1[i]);
+            }
+            if(sum%10===0)
+            {
+                document.getElementById('show').innerHTML="card is valid"; 
+            }
+            else
+            document.getElementById('show').innerHTML="card is invalid";  
+        }
+    </script>
+</html>
